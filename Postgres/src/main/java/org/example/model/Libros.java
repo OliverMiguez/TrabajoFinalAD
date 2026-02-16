@@ -16,7 +16,7 @@ public class Libros {
     @Id
     @JoinColumn(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long ISBM;
+    private Long isbm;
 
     @JoinColumn(name = "titulo")
     private String titulo;
@@ -24,21 +24,21 @@ public class Libros {
     @JoinColumn(name = "autor")
     private String autor;
 
-    @JoinColumn(name = "fechaLectura")
-    private Date fechaLectura;
+    @JoinColumn(name = "fechalectura")
+    private Date fechalectura;
 
-    @JoinColumn(name = "fechaRegistro")
-    private Date fechaRegistro;
+    @JoinColumn(name = "fecharegistro")
+    private Date fecharegistro;
 
 
     // GETTERS Y SETTERS
 
-    public Long getISBM() {
-        return ISBM;
+    public Long getisbm() {
+        return isbm;
     }
 
-    public void setISBM(Long ISBM) {
-        this.ISBM = ISBM;
+    public void setisbm(Long isbm) {
+        this.isbm = isbm;
     }
 
     public String getTitulo() {
@@ -57,19 +57,19 @@ public class Libros {
         this.autor = autor;
     }
 
-    public Date getFechaLectura() {
-        return fechaLectura;
+    public Date getfechalectura() {
+        return fechalectura;
     }
 
-    public void setFechaLectura(Date fechaLectura) {
-        this.fechaLectura = fechaLectura;
+    public void setfechalectura(Date fechalectura) {
+        this.fechalectura = fechalectura;
     }
 
-    public Date getFechaRegistro() {
-        return fechaRegistro;
+    public Date getfecharegistro() {
+        return fecharegistro;
     }
 
-    public void setFechaRegistro(Date fechaRegistro) {
-        this.fechaRegistro = fechaRegistro;
+    public void setfecharegistro(Date fecharegistro) {
+        this.fecharegistro = fecharegistro;
     }
 }
