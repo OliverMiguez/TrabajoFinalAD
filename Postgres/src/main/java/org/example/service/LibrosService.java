@@ -4,6 +4,10 @@ import org.example.model.Libros;
 import org.example.repository.LibrosRepository;
 import org.springframework.stereotype.Service;
 
+import javax.swing.plaf.PanelUI;
+import java.util.List;
+import java.util.Optional;
+
 /**
  * Acciones que podrá ejecutar
  */
@@ -16,14 +20,24 @@ public class LibrosService {
         this.librosRepository = librosRepository;
     }
 
-    /**
-     * Crea o guarda un libro entero en la BD
-     * @param libros Clase libro que recoge todos su datos
-     * @return Guarda en el repository los datos de libro
-     */
-    public Libros registrarLibro(Libros libros){
-       return librosRepository.save(libros);
+    public Libros save(Libros Libros) {
+        return librosRepository.save(Libros);
     }
 
+    public boolean existe(Long id) {
+        return librosRepository.existsById(id);
+    }
+
+    public void delete(Long id) {
+        librosRepository.deleteById(id);
+    }
+
+    public Optional<Libros>findById(Long id){
+        return librosRepository.findById(id);
+    }
+
+    public List<Libros>obtenerTodosLibros(){
+        return librosRepository.findAll();
+    }
 
 }
