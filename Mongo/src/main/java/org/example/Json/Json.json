@@ -1,1 +1,27 @@
-[{"isbm":1,"titulo":"Libro de prueba","autor":"Oliver"}]
+[
+  {
+    "isbm": 1,
+    "titulo": "Libro de prueba",
+    "autor": "Oliver"
+  },
+  {
+    "isbm": 1,
+    "titulo": "Pepez Adventure",
+    "autor": "Oliver No"
+  },
+  {
+    "isbm": 3,
+    "titulo": "Libro de Prueba",
+    "autor": "Oliver Casi"
+  },
+  {
+    "isbm": 4,
+    "titulo": "2ºLibro de Prueba",
+    "autor": "Oliver Casi"
+  },
+  {
+    "isbm": 5,
+    "titulo": "3ºLibro de Prueba",
+    "autor": "Oliver Casi"
+  }
+]
