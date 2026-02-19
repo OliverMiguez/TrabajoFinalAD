@@ -1,18 +1,16 @@
 package org.example.service;
 
-import com.google.gson.Gson;
-import org.example.model.Libros;
 import org.example.repository.LibrosRepository;
 import org.springframework.stereotype.Service;
 
-import java.io.FileWriter;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
 @Service
 public class LibrosService {
 
-    private LibrosRepository librosRepositor;
+    private final LibrosRepository librosRepositor;
 
     public LibrosService(LibrosRepository librosRepositor) {
         this.librosRepositor = librosRepositor;
@@ -34,22 +32,23 @@ public class LibrosService {
         return librosRepositor.existsById(id);
     }
 
-    public List<Libros> librosByTitulo(String titulo){
-        return librosRepositor.findByTitulo(titulo);
+    public List<Libros> buscarPorTitulo(String titulo) {
+        return librosRepositor.findByTituloContainingIgnoreCase(titulo);
+    }
+
+    public List<Libros> buscarPorAutor(String autor) {
+        return librosRepositor.findByAutorContainingIgnoreCase(autor);
+    }
+
+    public List<Libros> buscarPorFechaLectura(Date inicio, Date fin) {
+        return librosRepositor.findByFechalecturaBetween(inicio, fin);
+    }
+
+    public List<Libros> buscarPorFechaRegistro(Date inicio, Date fin) {
+        return librosRepositor.findByFecharegistroBetween(inicio, fin);
     }
 
     public void deleteById(Long id) {
         librosRepositor.deleteById(id);
-    }
-
-    public void exportarJson(){
-        Gson gson = new Gson();
-        List<Libros> libross = findAll();
-        try (FileWriter escritor = new FileWriter("src/main/java/org/example/Json/Libross.json")){
-            String json = gson.toJson(libross);
-            escritor.write(json);
-        } catch (Exception e) {
-            System.out.println("Error al exportar. "+e.getMessage());
-        }
     }
 }

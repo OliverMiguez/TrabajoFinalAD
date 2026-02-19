@@ -10,16 +10,6 @@ import java.text.ParseException;
 @SpringBootApplication
 @ComponentScan({"org.example"})
 public class Main {
-    private final Secuencia secuencia;
-
-    public Main(Secuencia secuencia) {
-        this.secuencia = secuencia;
-    }
-    @PostConstruct
-    public void executar() throws ParseException {
-        secuencia.executar();
-        System.exit(200);
-    }
     public static void main(String[] args) {
         SpringApplication.run(Main.class, args);
     }

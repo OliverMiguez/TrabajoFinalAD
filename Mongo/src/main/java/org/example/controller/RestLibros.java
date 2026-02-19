@@ -4,9 +4,11 @@ package org.example.controller;
 import org.example.model.Libros;
 import org.example.service.LibrosService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
 import java.util.List;
 
 
@@ -31,15 +33,29 @@ public class RestLibros {
                 .orElse(ResponseEntity.notFound().build());
     }
 
-    @GetMapping("/titulo/{titulo}")
-    public ResponseEntity<List<Libros>> getByTitulo(@PathVariable String titulo) {
-        List<Libros> libross = librosService.librosByTitulo(titulo);
-        if (libross == null || libross.isEmpty()){
-            return ResponseEntity.notFound().build();
-        }
-        return ResponseEntity.ok(libross);
+    @GetMapping("/buscar/titulo")
+    public List<Libros> getByTitulo(@RequestParam String titulo) {
+        return librosService.buscarPorTitulo(titulo);
     }
 
+    @GetMapping("/buscar/autor")
+    public List<Libros> getByAutor(@RequestParam String autor) {
+        return librosService.buscarPorAutor(autor);
+    }
+
+    @GetMapping("/buscar/fecha-lectura")
+    public List<Libros> getByFechaLectura(
+            @RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd") Date inicio,
+            @RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd") Date fin) {
+        return librosService.buscarPorFechaLectura(inicio, fin);
+    }
+
+    @GetMapping("/buscar/fecha-registro")
+    public List<Libros> getByFechaRegistro(
+            @RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd") Date inicio,
+            @RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd") Date fin) {
+        return librosService.buscarPorFechaRegistro(inicio, fin);
+    }
 
     @PostMapping
     public ResponseEntity<Libros> create(@RequestBody Libros libros) {
