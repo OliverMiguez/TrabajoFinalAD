@@ -29,7 +29,6 @@ public class Secuencia {
             librosService.save(lib);
         }
 
-        librosService.exportarJson();
 
     }
 }
